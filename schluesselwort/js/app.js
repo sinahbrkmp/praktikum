@@ -43,6 +43,7 @@ define('app', ['encryption', 'alphabet'], function(encryption, alphabet) {
 				return false;
 			},
 			decrypt: function () {
+				var message = clean(this.message);
 				var key = clean(this.key)
 				this.processedMessage = splitIntoCharacterGroups(encryption.decrypt(message, key));
 				return false;
