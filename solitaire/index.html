@@ -1,0 +1,40 @@
+<html>
+	<head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+		
+		<script   src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script data-main="js/app" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <script>
+        require.config({
+		    urlArgs: "bust=" + (new Date()).getTime()
+		});
+		</script>
+	</head>
+	<body>
+		<div class="main container">
+			<h1>Verschlüsselung</h1>
+			<form id="app">
+				<div class="form-group">
+				   <label for="message">Nachricht:</label>
+				   <textarea  class="form-control" id="message" placeholder="Nachricht" v-model="message"></textarea>
+				</div>
+				<!--div class="form-group">
+				   <label for="key">Schlüssel:</label>
+				   <textarea  class="form-control" id="key" placeholder="Schluessel" v-model="key"></textarea>
+				</div-->
+				<div class="form-group">
+				   <label for="message">Ergebnis:</label>
+				   <textarea  class="form-control" id="message" placeholder="Nachricht" v-model="processedMessage"></textarea>
+				</div>
+				<a class="btn btn-default" v-on:click="encrypt">Verschlüsseln!</a>
+
+				<a class="btn btn-default" v-on:click="decrypt">Entschlüsseln!</a>
+			</form>
+		</div>
+	</body>
+</html>
