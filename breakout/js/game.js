@@ -47,25 +47,32 @@ myGameloop = function () {
 	draw();
 
 	ball.ballX += ball.directionX*ball.speed;
-	if (ball.ballX+ball.groesse>=canvas.width || ball.ballX-ball.groesse<=0) {
-		ball.directionX	*= -1;
+	if ( ball.ballX-ball.groesse<=0) {
+		ball.directionX	= 1;
+	}
+
+	if (ball.ballX+ball.groesse>=canvas.width ) {
+		ball.directionX	= -1;
 	}
 
 	ball.ballY += ball.directionY*ball.speed;
-	if (ball.ballY+ball.groesse>=canvas.height || ball.ballY-ball.groesse<=0) {
-		ball.directionY	*= -1;
+	if ( ball.ballY-ball.groesse<=0) {
+		ball.directionY	= 1;
 	}
 
-	if (ball.ballY+ball.groesse > 480&&ball.directionY==1) {
+	if (ball.ballY+ball.groesse>=canvas.height ) {
+		ball.directionY	= -1;
+	 	ball.speed = 2;
+		console.log("falsch")				
+	}	
+
+
+	if (ball.ballY+ball.groesse > 480 && ball.directionY==1) {
 		if (ball.ballX<=paddleX+25&&ball.ballX>=paddleX-25) {
 			ball.directionY = -1;
 			console.log("getroffen");
 			ball.speed ++;
-		} else {
-				ball.speed = 2;
-				console.log("falsch")
-		}
-		
+		} 		
 	}
 
 
