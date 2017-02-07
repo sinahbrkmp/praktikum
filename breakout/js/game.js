@@ -60,12 +60,11 @@ myGameloop = function () {
 		ball.directionY	= 1;
 	}
 
-	if (ball.ballY+ball.groesse>=canvas.height ) {
+	if (ball.ballY+ball.groesse>=canvas.height && ball.directionY==1) {
 		ball.directionY	= -1;
 	 	ball.speed = 2;
 		console.log("falsch")				
 	}	
-
 
 	if (ball.ballY+ball.groesse > 480 && ball.directionY==1) {
 		if (ball.ballX<=paddleX+25&&ball.ballX>=paddleX-25) {
