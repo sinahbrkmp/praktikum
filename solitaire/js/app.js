@@ -38,13 +38,13 @@ define('app', ['encryption', 'alphabet'], function(encryption, alphabet) {
 				while (message.length % 5 != 0) {
 					message += "X";
 				}
-				var key = clean(this.key)
+				var key = this.key
 				this.processedMessage = splitIntoCharacterGroups(encryption.encrypt(message, key));
 				return false;
 			},
 			decrypt: function () {
 				var message = clean(this.message);
-				var key = clean(this.key)
+				var key = this.key
 				this.processedMessage = splitIntoCharacterGroups(encryption.decrypt(message, key));
 				return false;
 			}

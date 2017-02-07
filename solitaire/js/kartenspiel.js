@@ -197,6 +197,25 @@ var Kartenspiel = function (karten) {
         };
       
     };
+
+   
+
+
+
+    //Kartenspiel mischen 
+    this.mischen  = function (seed){
+    	var helfer = 3
+    	for ( var i=0 ; i<5 ; i++) {
+    		var x = (seed^helfer) % 54 	
+    		var y = (seed * helfer) % 54
+    		helfer = helfer + 1	
+    		var gesp = this.karten[x]
+    		this.karten[x] = this.karten[y]
+    		this.karten[y] = gesp 
+    	}
+ 
+    }
+
 }
 
 
