@@ -1,7 +1,11 @@
 
 var canvas = "";
 var context = "";
+var score = 0;
+var lives = 3;
+var time = 10;
 
+var colorBall = ["Green","DeepSkyBlue","Purple","Black","Crimson"]
 init = function () {
 	canvas = document.getElementById("myCanvas");
 	context = canvas.getContext("2d");
@@ -27,24 +31,21 @@ paddle = function (e) {
 }
 
 draw = function () {
-	
 	context.fillStyle="PowderBlue";
 	context.fillRect(0,0,canvas.width,canvas.height);
 	context.fillStyle="red";
 	context.fillRect(paddleX-25,480,50,10);
 
-	context.fillStyle="Green"
+	context.fillStyle=ball.color;
 	context.beginPath();
 	context.arc(ball.ballX,ball.ballY,ball.groesse,0,2*Math.PI);
 	context.fill();
 
+	document.getElementById("lives").innerHTML=lives;
+	document.getElementById("score").innerHTML=score; 
 }
 
-	
-
-myGameloop = function () {
-
-	draw();
+moveBall = function () {
 
 	ball.ballX += ball.directionX*ball.speed;
 	if ( ball.ballX-ball.groesse<=0) {
@@ -62,23 +63,36 @@ myGameloop = function () {
 
 	if (ball.ballY+ball.groesse>=canvas.height && ball.directionY==1) {
 		ball.directionY	= -1;
-	 	ball.speed = 2;
-		console.log("falsch")				
+		lives --
+		if (lives == -1){
+			alert("Du hast keine Leben mehr! NEUSTART ")
+			score = 0;
+			lives = 3;
+			ball.speed = 2;
+			ball.color = (colorBall[0])
+		}			
 	}	
 
 	if (ball.ballY+ball.groesse > 480 && ball.directionY==1) {
 		if (ball.ballX<=paddleX+25&&ball.ballX>=paddleX-25) {
 			ball.directionY = -1;
-			console.log("getroffen");
-			ball.speed ++;
+			score += 10
+			if ( score % 50 == 0 ){
+				ball.speed ++;
+				ball.color=colorBall[Math.floor((score/50)%5)]
+			}
 		} 		
 	}
+}
 
 
 	
 
-	setTimeout(myGameloop,10);
+myGameloop = function () {
 
+	draw();
+	moveBall();
+	setTimeout(myGameloop,time);
 }
 
  
