@@ -14,8 +14,8 @@ init = function () {
 }
 
 var ball = {
-	ballX: 100,
-	ballY: 100,
+	ballX: Math.floor(Math.random()*400),
+	ballY: Math.floor(Math.random()*300),
 	groesse: 15,
 	color: "Green",
 	speed: 2,
